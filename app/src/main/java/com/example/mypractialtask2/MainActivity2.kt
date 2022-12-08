@@ -2,9 +2,11 @@ package com.example.mypractialtask2
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import com.example.mypractialtask2.view2.fragment.FragmentA
 import com.example.mypractialtask2.view2.fragment.FragmentB
+import java.net.URLEncoder
 
 class MainActivity2 : AppCompatActivity() {
     companion object{
@@ -17,6 +19,10 @@ class MainActivity2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+        var str:String = "https%3A%2F%2Fdevelopment-mobile.builderstorm.com%2F%2Fuploads%2Fdevelopment-mobile%2Fcustom_documents%2Fheader_608a8a0318c37.jpg".replace("%3A",":").replace("%2","")
+        //var url = URLEncoder.encode(str)
+        Log.e("TAG", "onCreate: sdkhfgkldsfdsf..$str", )
+
         getSupportFragmentManager().beginTransaction()
             .replace(R.id.a_fragment, FragmentA())
             .replace(R.id.b_fragment, FragmentB()).commit()

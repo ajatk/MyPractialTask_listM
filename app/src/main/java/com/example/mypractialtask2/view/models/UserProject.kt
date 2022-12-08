@@ -22,7 +22,7 @@ data class UserProject(
     val group_id_system: Int,
     val headline: String,
     val hidden_status: Int,
-    val image: String,
+    val image: String?=null,
     val lang: String,
     val lat: String,
     val logistics_manager: String,
@@ -53,9 +53,9 @@ data class UserProject(
     val submittals_upload_project_document: String,
     val submittals_upload_project_drawing: String,
     val super_admin_project: Int,
-    val title: String,
+    val title: String?=null,
     val type: String,
     val uid: Int,
-    val username: String,
+    val username: String?=null,
     val zip: String
 )

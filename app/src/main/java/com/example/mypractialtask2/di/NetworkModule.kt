@@ -6,6 +6,7 @@ import android.util.Log
 import com.example.mypractialtask2.BuildConfig
 import com.example.mypractialtask2.commons.constants.ConstantValues
 
+
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -52,12 +53,12 @@ class NetworkModule {
         @ApplicationContext context: Context
     ): OkHttpClient =
         OkHttpClient.Builder()
-            .addInterceptor(interceptor)
-            /*.addInterceptor { chain ->
+             .addInterceptor(interceptor)
+             /* .addInterceptor { chain ->
 
                 val builder: Headers.Builder = Headers.Builder()
-                builder.add("Authorization", pref.getValueString(PreferenceManager.token))
-                Log.e("providesOkhttpClient: ", pref.getValueString(PreferenceManager.token))
+                builder.add("authtoken", authToken)
+                Log.e("providesOkhttpClient: ", authToken)
                 val value = builder.build()
                 val request: Request = chain.request().newBuilder()
                     .headers(value)
@@ -86,6 +87,7 @@ class NetworkModule {
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(okHttpClient)
+
             .build()
 
 }
