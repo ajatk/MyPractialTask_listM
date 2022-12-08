@@ -22,21 +22,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.e("TAG", "onCreate: sdkhfgkldsfdsf")
-
-
-          replaceFrag(UserProjectsFragment())
-        // replaceFrag(ProjectsTempletFragment())
-
-        findViewById<AppCompatTextView>(R.id.addTemplete).setOnClickListener {
-            findViewById<AppCompatTextView>(R.id.addTemplete).visibility =View.GONE
-            replaceFrag(ProjectsTempletFragment())
-        }
+        replaceFrag(UserProjectsFragment())
+        findViewById<AppCompatTextView>(R.id.addTemplete).visibility =View.GONE
+//        findViewById<AppCompatTextView>(R.id.addTemplete).setOnClickListener {
+//            replaceFrag(ProjectsTempletFragment())
+//        }
 
     }
 
 
-    fun replaceFrag(frag:Fragment) {
+   public fun replaceFrag(frag:Fragment) {
         val ft = supportFragmentManager.beginTransaction()
         ft.replace(R.id.frame_main, frag)
         //fragment.arguments = bundle
@@ -45,10 +40,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        if(supportFragmentManager.backStackEntryCount>1){
-            findViewById<AppCompatTextView>(R.id.addTemplete).visibility= View.VISIBLE
-        }
-    }
+
 }

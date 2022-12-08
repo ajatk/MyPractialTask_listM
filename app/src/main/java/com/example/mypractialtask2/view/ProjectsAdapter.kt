@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.mypractialtask2.R
-import com.example.mypractialtask2.commons.constants.ConstantValues.Companion.baseUrl
 import com.example.mypractialtask2.databinding.LayoutProjectsRowBinding
 import com.example.mypractialtask2.view.ProjectsAdapter.*
 import com.example.mypractialtask2.view.models.UserProject
 
-class ProjectsAdapter(requireContext: Context) : RecyclerView.Adapter<ProjectsAdapterViewHolder>() {
+class ProjectsAdapter(requireContext: Context, val itemClicked:UserProjectsData) : RecyclerView.Adapter<ProjectsAdapterViewHolder>() {
      private var userProjects: List<UserProject>?=null
     inner class ProjectsAdapterViewHolder(val binding: LayoutProjectsRowBinding) :RecyclerView.ViewHolder(binding.root) {
 
@@ -35,7 +33,12 @@ class ProjectsAdapter(requireContext: Context) : RecyclerView.Adapter<ProjectsAd
                 }*/
                 tvTitle.text = it.title?:""
                 tvEmail.text = it.username?:""
+
+                mainCons.setOnClickListener { v->
+                    itemClicked.onUserItemClicked("${it.uid}")
+                }
             }
+
 
         }
     }

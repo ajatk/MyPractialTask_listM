@@ -3,6 +3,7 @@ package com.example.mypractialtask2.view
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -69,7 +70,7 @@ class ProjectsTempletFragment : Fragment() {
 
     private fun albumApi() {
         viewModel.androidGetTempletePoject(
-            pageno="0",docid="0",issue_id="",pid="329",recurrence="",clone="0"
+            pageno="0",docid="0",issue_id="",pid="${arguments?.getString("uid")}",recurrence="",clone="0"
         ).observe(viewLifecycleOwner,{
             updateUI(it)
         })

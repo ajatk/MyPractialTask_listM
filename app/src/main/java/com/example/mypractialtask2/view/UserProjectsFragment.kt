@@ -1,25 +1,27 @@
 package com.example.mypractialtask2.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.example.mypractialtask2.MainActivity
 import com.example.mypractialtask2.commons.utillss.ResultWrapper
 import com.example.mypractialtask2.databinding.FragmentUserProjectsBinding
 import com.example.mypractialtask2.view.models.UserProjectsPojo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class UserProjectsFragment : Fragment() {
+class UserProjectsFragment : Fragment(),UserProjectsData {
     private val viewModel: UserProjectsViewModel by viewModels()
 
     private var viewBinding :FragmentUserProjectsBinding?=null
     private var userProjectsPojo: UserProjectsPojo?=null
     private val projectsAdapter by lazy {
-        ProjectsAdapter(requireContext(), )
+        ProjectsAdapter(requireContext(), this)
     }
 
     override fun onCreateView(
@@ -76,6 +78,16 @@ class UserProjectsFragment : Fragment() {
             projectsAdapter.notifyDataSetChanged()
         }
 
+    }
+
+    override fun onUserItemClicked(uid: String) {
+        //Toast.makeText(requireContext(), "$uid", Toast.LENGTH_SHORT).show()
+        val bundle =Bundle().apply {
+            putString("uid",uid)
+        }
+        (activity as MainActivity).replaceFrag(ProjectsTempletFragment().apply {
+            arguments =bundle
+        })
     }
 
 }
